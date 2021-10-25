@@ -3,13 +3,13 @@
 	export let text;
 	export let icon;
 
-	let height: String = 'h-16 overflow-hidden';
-	let hover: String = 'bg-meshblue-700 hover:bg-meshblue-800';
+	let height: String = 'h-14 overflow-hidden';
+	let hover: String = 'bg-meshblue-600 hover:bg-meshblue-700';
 	let rotate: String = 'rotate-0';
 	const dropdown = () => {
 		if (height == 'h-auto') {
-			height = 'h-16 overflow-hidden';
-			hover = 'bg-meshblue-700 hover:bg-meshblue-800';
+			height = 'h-14 overflow-hidden';
+			hover = 'bg-meshblue-600 hover:bg-meshblue-700';
 			rotate = 'rotate-0';
 		} else {
 			height = 'h-auto';
@@ -20,20 +20,17 @@
 </script>
 
 <section
-	class="nav-user-item w-full border-b-2 border-meshblue-400 cursor-pointer {height} select-none duration-300"
+	class="nav-user-item w-full border-b border-meshblue-400 cursor-pointer {height} select-none"
 	on:click={dropdown}
 >
-	<div class="font-bold text-2xl capitalize align-middle leading-16 pl-2 flex {hover}">
-		<span class="material-icons mr-2 select-none font-extrabold leading-16 align-middle">
-			{icon}
-		</span>
+	<div class="capitalize text-xl font-bold align-middle leading-14 pl-6 flex {hover}">
 		{text}
 		<div class="flex-grow" />
-		<div class="pr-4">
-			<div class="material-icons leading-16 {rotate} duration-500">expand_more</div>
+		<div class="pr-4 leading-14">
+			<div class="material-icons leading-14 {rotate} duration-300">expand_more</div>
 		</div>
 	</div>
-	<div class="dropdown">
+	<div class="dropdown bg-meshblue-500 pb-2">
 		<slot />
 	</div>
 </section>

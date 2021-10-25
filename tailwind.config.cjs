@@ -21,6 +21,8 @@ const config = {
         spartan: ["Spartan", "sans-serif"]
       },
       lineHeight: {
+        "12" : "3rem",
+        "14": "3.5rem",
         "16" : "4rem"
       }
     }
