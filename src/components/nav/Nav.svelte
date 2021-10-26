@@ -10,15 +10,13 @@
 >
 	<NavLogo />
 	<SingleItem text="home" link="/" />
-	<NavDropdown text="home" icon="search">
-		<NavItem text="home" icon="home" link="/" />
-		<NavItem text="Your account" icon="account_circle" link="/" />
-		<NavItem text="People" icon="face" link="/" />
+	<NavDropdown text="Profile" icon="account_circle">
+		<NavItem text="Your profile" icon="account_circle" link="/" />
+		<NavItem text="Settings" icon="settings" link="/" />
+		<div class="h-4" />
+		<NavItem text="Sign out" icon="logout" link="/" />
 	</NavDropdown>
 </nav>
 
 <style>
-	.nav-shadow {
-		box-shadow: 0 0;
-	}
 </style>
