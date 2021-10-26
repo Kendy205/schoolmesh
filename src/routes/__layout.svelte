@@ -37,7 +37,7 @@
 {:else}
 	<main class="md:ml-64">
 		<Nav />
-		<div class="mx-8 container">
+		<div class="m-12 container">
 			<slot />
 		</div>
 	</main>

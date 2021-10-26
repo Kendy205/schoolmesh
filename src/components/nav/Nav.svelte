@@ -9,7 +9,7 @@
 	class="fixed top-0 left-0 md:w-64 md:scale-100 scale-0 bg-meshblue-600 nav-shadow h-screen min-h-screen text-white"
 >
 	<NavLogo />
-	<SingleItem text="Home" />
+	<SingleItem text="home" link="/" />
 	<NavDropdown text="home" icon="search">
 		<NavItem text="home" icon="home" link="/" />
 		<NavItem text="Your account" icon="account_circle" link="/" />
