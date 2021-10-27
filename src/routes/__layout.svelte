@@ -13,7 +13,6 @@
 	// Lokalizace
 	register('en', () => import('../languages/en.json'));
 	register('en-US', () => import('../languages/en-US.json'));
-	register('cs', () => import('../languages/cs.json'));
 	// Initialize localization
 	init({
 		initialLocale: getLocaleFromNavigator(),
