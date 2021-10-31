@@ -7,10 +7,11 @@
 <button
 	on:click={() =>
 		addNotification({
-			text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quaerat, alias enim minus quod blanditiis unde. Mollitia harum autem similique repellat quam magni ut quo in, error at, odio placeat.',
+			text: 'trošku více textu by to chtělo axcsakjdasklůdjasl ůkjdaslůkjdfalůkj',
 			position: 'top-right',
-			heading: 'An error occured',
-			type: 'error'
+			heading: 'Ahoj',
+			type: 'error',
+			removeAfter: 4000
 		})}
 >
 	Add notification

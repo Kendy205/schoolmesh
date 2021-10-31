@@ -7,16 +7,29 @@
 	import { auth } from '../../lib/firebase';
 	import { signOut } from 'firebase/auth';
 	import { goto } from '$app/navigation';
+	import { getNotificationsContext } from 'svelte-notifications';
+	const { addNotification } = getNotificationsContext();
 
 	function logOut() {
 		console.log('logOut');
 		signOut(auth)
 			.then(() => {
-				// TODO: Add toast for succesfule sign out
-				goto('/');
+				addNotification({
+					text: 'You were successfully logged out',
+					position: 'top-right',
+					heading: 'Signed out',
+					type: '',
+					removeAfter: 4000
+				});
 			})
 			.catch((e) => {
-				// TODO: Add toast for error and possibly redirect to error page
+				addNotification({
+					text: 'Something went wrong please try again in few minutes',
+					position: 'top-right',
+					heading: 'Something went wrong',
+					type: 'error',
+					removeAfter: 4000
+				});
 			});
 	}
 </script>
@@ -33,10 +46,10 @@
 
 		{#if $authStore.isLoggedIn}
 			<span on:click={logOut}>
-				<NavItem text="Sign Out" icon="logout" link="/" />
+				<NavItem text="Log Out" icon="logout" link="/" />
 			</span>
 		{:else}
-			<NavItem text="Sign in" icon="login" link="/login" />
+			<NavItem text="Log in" icon="login" link="/login" />
 		{/if}
 	</NavDropdown>
 </nav>

@@ -6,11 +6,15 @@
 	import { signInWithPopup } from 'firebase/auth';
 	import { goto } from '$app/navigation';
 	import { setDoc, serverTimestamp, doc } from 'firebase/firestore';
+	import { getNotificationsContext } from 'svelte-notifications';
+	const { addNotification } = getNotificationsContext();
+
 	// Sing the user in with specified provider
 	const signInWithGoogle = () => {
 		console.log('succes');
 		signInWithPopup(auth, googleAuth)
 			.then((result) => {
+				signInToast();
 				goto('/');
 			})
 			.catch((error) => {
@@ -20,6 +24,7 @@
 	const signInWithFacebook = () => {
 		signInWithPopup(auth, facebookAuth)
 			.then((result) => {
+				signInToast();
 				goto('/');
 			})
 			.catch((error) => {
@@ -29,11 +34,23 @@
 	const signInWithGithub = () => {
 		signInWithPopup(auth, githubAuth)
 			.then((result) => {
+				signInToast();
 				goto('/');
 			})
 			.catch((error) => {
 				console.log(error);
 			});
+	};
+
+	// A toast confirming user is signed in
+	const signInToast = () => {
+		addNotification({
+			text: 'You were successfully signed in',
+			position: 'top-right',
+			heading: 'Sign in',
+			type: '',
+			removeAfter: 4000
+		});
 	};
 </script>
 
