@@ -13,6 +13,9 @@
 	import { onAuthStateChanged } from 'firebase/auth';
 	import { onMount } from 'svelte';
 	import authStore from '../lib/authStore';
+	import Notifications from 'svelte-notifications';
+	import Toast from '../components/ui/Toast.svelte';
+
 	// Lokalizace
 	register('en', () => import('../languages/en.json'));
 	register('en-US', () => import('../languages/en-US.json'));
@@ -48,10 +51,12 @@
 	<!-- Make is loading component -->
 	Please wait
 {:else}
-	<main class="md:ml-64">
-		<Nav />
-		<div class="m-12 container">
-			<slot />
-		</div>
-	</main>
+	<Notifications item={Toast}>
+		<main class="md:ml-64">
+			<Nav />
+			<div class="m-12 container">
+				<slot />
+			</div>
+		</main>
+	</Notifications>
 {/if}

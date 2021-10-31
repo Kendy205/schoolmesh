@@ -40,6 +40,3 @@
 		{/if}
 	</NavDropdown>
 </nav>
-
-<style>
-</style>

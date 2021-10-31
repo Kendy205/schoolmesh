@@ -6262,6 +6262,11 @@
   "resolved" "https://registry.npmjs.org/svelte-jester/-/svelte-jester-2.1.5.tgz"
   "version" "2.1.5"
 
+"svelte-notifications@^0.9.91":
+  "integrity" "sha512-a7OozmoFkykkUnqtQ8j2pyStEB4xaz5qIFxB4z1y+cguvgUnoTiOCAyKn/PN7qPfAzuWypInqcqtl0nTKOJ8fQ=="
+  "resolved" "https://registry.npmjs.org/svelte-notifications/-/svelte-notifications-0.9.91.tgz"
+  "version" "0.9.91"
+
 "svelte-preprocess@^4.0.0", "svelte-preprocess@^4.9.8":
   "integrity" "sha512-EQS/oRZzMtYdAprppZxY3HcysKh11w54MgA63ybtL+TAZ4hVqYOnhw41JVJjWN9dhPnNjjLzvbZ2tMhTsla1Og=="
   "resolved" "https://registry.npmjs.org/svelte-preprocess/-/svelte-preprocess-4.9.8.tgz"
