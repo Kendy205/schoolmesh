@@ -3,6 +3,22 @@
 	import NavDropdown from './NavDropdown.svelte';
 	import NavItem from './NavItem.svelte';
 	import SingleItem from './SingleItem.svelte';
+	import authStore from '../../lib/authStore';
+	import { auth } from '../../lib/firebase';
+	import { signOut } from 'firebase/auth';
+	import { goto } from '$app/navigation';
+
+	function logOut() {
+		console.log('logOut');
+		signOut(auth)
+			.then(() => {
+				// TODO: Add toast for succesfule sign out
+				goto('/');
+			})
+			.catch((e) => {
+				// TODO: Add toast for error and possibly redirect to error page
+			});
+	}
 </script>
 
 <nav
@@ -10,11 +26,18 @@
 >
 	<NavLogo />
 	<SingleItem text="home" link="/" />
-	<NavDropdown text="Profile" icon="account_circle">
+	<NavDropdown text="Profile">
 		<NavItem text="Your profile" icon="account_circle" link="/" />
 		<NavItem text="Settings" icon="settings" link="/" />
 		<div class="h-4" />
-		<NavItem text="Sign out" icon="logout" link="/" />
+
+		{#if $authStore.isLoggedIn}
+			<span on:click={logOut}>
+				<NavItem text="Sign Out" icon="logout" link="/" />
+			</span>
+		{:else}
+			<NavItem text="Sign in" icon="login" link="/login" />
+		{/if}
 	</NavDropdown>
 </nav>
 

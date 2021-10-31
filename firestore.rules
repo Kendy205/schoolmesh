@@ -4,7 +4,10 @@ service cloud.firestore {
     match /{document=**} {
       match /users/{userId}{
         match /privateInfo/data {
-          allow write: if canCreateNewProfile();
+          allow create: if canCreateNewProfile();
+        }
+        match /publicInfo/data{
+          allow create: if canCreateNewProfile();
         }
       }
     }

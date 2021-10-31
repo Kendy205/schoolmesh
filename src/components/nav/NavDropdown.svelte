@@ -1,7 +1,6 @@
 <script lang="ts">
 	import NavItem from './NavItem.svelte';
 	export let text;
-	export let icon;
 
 	let height: String = 'h-14 overflow-hidden';
 	let hover: String = 'bg-meshblue-600 hover:bg-meshblue-700';

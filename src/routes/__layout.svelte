@@ -9,7 +9,10 @@
 	import '../app.css';
 	import { register, init, getLocaleFromNavigator, isLoading } from 'svelte-i18n';
 	import Nav from '../components/nav/Nav.svelte';
-
+	import { auth } from '../lib/firebase';
+	import { onAuthStateChanged } from 'firebase/auth';
+	import { onMount } from 'svelte';
+	import authStore from '../lib/authStore';
 	// Lokalizace
 	register('en', () => import('../languages/en.json'));
 	register('en-US', () => import('../languages/en-US.json'));
@@ -17,6 +20,17 @@
 	init({
 		initialLocale: getLocaleFromNavigator(),
 		fallbackLocale: 'en'
+	});
+
+	//Listens for authStatechanges and updates the authStore accordingly
+	onMount(() => {
+		onAuthStateChanged(auth, (user) => {
+			console.log(user);
+			authStore.set({
+				isLoggedIn: user !== null,
+				user
+			});
+		});
 	});
 </script>
 

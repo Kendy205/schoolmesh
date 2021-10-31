@@ -6,14 +6,12 @@
 	import { signInWithPopup } from 'firebase/auth';
 	import { goto } from '$app/navigation';
 	import { setDoc, serverTimestamp, doc } from 'firebase/firestore';
-
 	// Sing the user in with specified provider
 	const signInWithGoogle = () => {
 		console.log('succes');
 		signInWithPopup(auth, googleAuth)
 			.then((result) => {
-				console.log(result.user);
-				sendToDatabase(result.user);
+				goto('/');
 			})
 			.catch((error) => {
 				console.log(error);
@@ -36,31 +34,6 @@
 			.catch((error) => {
 				console.log(error);
 			});
-	};
-
-	//Sends the userInfo to database
-	const sendToDatabase = async (user) => {
-		const userPrivateRef = doc(db, 'users', `${user.id}`, 'privateInfo', 'info');
-		const userPublicRef = doc(db, 'users', `${user.id}`, 'publicInfo', 'info');
-		await setDoc(
-			userPrivateRef,
-			{
-				email: user.email,
-				lastLogin: serverTimestamp()
-			},
-			{ merge: true }
-		);
-		await setDoc(
-			userPublicRef,
-			{
-				displayName: user.displayName,
-				photoURL: user.photoURL,
-				uid: user.uid
-			},
-			{ merge: true }
-		).then(() => {
-			goto('/');
-		});
 	};
 </script>
 
