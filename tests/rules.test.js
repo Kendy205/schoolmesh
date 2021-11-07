@@ -8,10 +8,11 @@ const { readFileSync } = require('fs');
 
 
 
-describe("Database rule", () => {
+describe("Signing up and registering", () => {
   let app;
   let alice;
   let aliceDb;
+  // Setup
   beforeAll(async () => {
     app = await setup();
 
@@ -20,16 +21,8 @@ describe("Database rule", () => {
       photoURL : "http://photoURL.com",
     })
     aliceDb = await app.authenticatedContext('alice').firestore()
+    teardown()
   })
-
-  test("Allow create profile with valid fields", async () => {
-    
-    await assertSucceeds(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/privateInfo/data`), {
-      displayName: alice.authToken.displayName,
-      photoURL: alice.authToken.photoURL,
-      uid: alice.authToken.user_id,
-    }));
-  });
 
   test("Deny create profile because it spoofs its id", async () =>{
     await assertFails(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/privateInfo/data`), {
@@ -37,4 +30,27 @@ describe("Database rule", () => {
     }));
   })
 
+  test("Allow creating profile with valid fields", async () => {
+    await assertSucceeds(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/privateInfo/data`), {
+      displayName: alice.authToken.displayName,
+      photoURL: alice.authToken.photoURL,
+      uid: alice.authToken.user_id,
+    }));
+  });
+
+  test("Allow updating profile", async () => {
+    await assertSucceeds(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/privateInfo/data`), {
+      displayName: "Bob",
+      photoURL: alice.authToken.photoURL,
+      uid: alice.authToken.user_id,
+    }));
+  })
+
+  test("Deny updating profile because it tries to use different uid", async () =>{
+    await assertFails(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/privateInfo/data`), {
+      displayName: alice.authToken.displayName,
+      photoURL: alice.authToken.photoURL,
+      uid: "spoofed token",
+    }));
+  })
 })

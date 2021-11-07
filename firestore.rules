@@ -6,11 +6,11 @@ service cloud.firestore {
       match /users/{userId}{
         match /privateInfo/data {
           allow create: if canCreateNewProfile();
-          allow update: if request.auth.uid == resource.data.uid;
+          allow update: if canCreateNewProfile() && request.auth.uid == resource.data.uid;
         }
         match /publicInfo/data{
           allow create: if canCreateNewProfile();
-          allow update: if request.auth.uid == resource.data.uid;
+          allow update: if canCreateNewProfile() && request.auth.uid == resource.data.uid;
         }
       }
     }

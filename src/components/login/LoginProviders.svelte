@@ -42,8 +42,7 @@
 		await setDoc(
 			userPrivateRef,
 			{
-				email: user.email,
-				lastLogin: serverTimestamp()
+				email: user.email
 			},
 			{ merge: true }
 		);
@@ -62,7 +61,7 @@
 			})
 			.catch((e) => {
 				addNotification({
-					text: `Try refreshing the page${e}`,
+					text: `Try refreshing the page </br> ${e}`,
 					position: 'top-right',
 					heading: 'Something went wrong',
 					type: 'error',
