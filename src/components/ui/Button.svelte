@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="w-max rounded-md leading-8 flex {`bg-${bgColor}`} p-2 align-middle text-{textColor} duration-300 cursor-pointer mb-4"
+	class="w-max rounded-md leading-8 flex {`bg-${bgColor}`} p-2 pr-3 align-middle text-{textColor} duration-300 cursor-pointer mb-4"
 >
 	<div class="material-icons leading-8 mr-2">
 		{icon}

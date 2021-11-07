@@ -10,7 +10,19 @@
 	// Sign user in
 	// @param provider = Firebase login provider
 	function signIn(provider) {
-		signInWithPopup(auth, provider);
+		signInWithPopup(auth, provider).then((result) => {
+			try {
+				sendToDatabase(result.user);
+			} catch (e) {
+				addNotification({
+					text: `Something went wrong. Try refreshing the page </br>${e}`,
+					position: 'top-right',
+					heading: 'Something wen wrong.',
+					type: '',
+					removeAfter: 4000
+				});
+			}
+		});
 	}
 
 	// A toast confirming user is signed in
@@ -22,6 +34,41 @@
 			type: '',
 			removeAfter: 4000
 		});
+	};
+
+	const sendToDatabase = async (user) => {
+		const userPrivateRef = doc(db, 'users', `${user.id}`, 'privateInfo', 'data');
+		const userPublicRef = doc(db, 'users', `${user.id}`, 'publicInfo', 'data');
+		await setDoc(
+			userPrivateRef,
+			{
+				email: user.email,
+				lastLogin: serverTimestamp()
+			},
+			{ merge: true }
+		);
+		await setDoc(
+			userPublicRef,
+			{
+				displayName: user.displayName,
+				photoURL: user.photoURL,
+				uid: user.uid
+			},
+			{ merge: true }
+		)
+			.then(() => {
+				goto('/');
+				signInToast();
+			})
+			.catch((e) => {
+				addNotification({
+					text: `Try refreshing the page${e}`,
+					position: 'top-right',
+					heading: 'Something went wrong',
+					type: 'error',
+					removeAfter: 4000
+				});
+			});
 	};
 </script>
 

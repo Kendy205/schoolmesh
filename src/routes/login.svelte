@@ -28,7 +28,7 @@
 </script>
 
 <section>
-	<Header text="Log in" />
+	<Header>Login</Header>
 
 	<div class="grid grid-cols-2 gap-24">
 		<div class="shadow-lg p-8 rounded-md bg-white">
