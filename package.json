@@ -10,7 +10,7 @@
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
 		"jest": "jest --env=node --detectOpenHandles",
-		"test": "firebase emulators:exec --only firestore \"npm run test\"",
+		"test": "firebase emulators:exec --only firestore \"npm run jest\"",
 		"deploy": "firebase deploy --only firestore:rules"
 	},
 	"devDependencies": {
