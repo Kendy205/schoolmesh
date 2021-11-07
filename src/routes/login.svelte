@@ -9,38 +9,11 @@
 	import { getNotificationsContext } from 'svelte-notifications';
 	const { addNotification } = getNotificationsContext();
 
-	// Sing the user in with specified provider
-	const signInWithGoogle = () => {
-		console.log('succes');
-		signInWithPopup(auth, googleAuth)
-			.then((result) => {
-				signInToast();
-				goto('/');
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	};
-	const signInWithFacebook = () => {
-		signInWithPopup(auth, facebookAuth)
-			.then((result) => {
-				signInToast();
-				goto('/');
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	};
-	const signInWithGithub = () => {
-		signInWithPopup(auth, githubAuth)
-			.then((result) => {
-				signInToast();
-				goto('/');
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	};
+	// Sign user in
+	// @param provider = Firebase login provider
+	function signIn(provider) {
+		signInWithPopup(auth, provider);
+	}
 
 	// A toast confirming user is signed in
 	const signInToast = () => {
@@ -61,7 +34,6 @@
 		<div class="shadow-lg p-8 rounded-md bg-white">
 			<h2 class="mb-4">With your mesh account</h2>
 			<section>
-				<!-- <h3 class="my-4">Email</h3> -->
 				<input
 					class="w-72 flex-auto sign-in-text p-2 text-black rounded-md border-2 border-mesh-300 focus:border-meshblue-500 outline-none leading-8 mb-4"
 					type="text"
@@ -69,7 +41,6 @@
 				/>
 			</section>
 			<section>
-				<!-- <h3 class="my-4">Password</h3> -->
 				<input
 					class="w-72 flex-auto sign-in-text p-2 text-black rounded-md border-2 border-mesh-300 focus:border-meshblue-500 outline-none leading-8 mb-4"
 					type="password"
@@ -83,7 +54,11 @@
 		<!-- Login Providers -->
 		<div class="shadow-lg p-8 rounded-md bg-white">
 			<h2 class="mb-4">Using your other accounts</h2>
-			<span on:click={signInWithGoogle}>
+			<span
+				on:click={() => {
+					signIn(googleAuth);
+				}}
+			>
 				<LoginProvider
 					text="Sign in with google"
 					bgColor="white"
@@ -91,7 +66,11 @@
 					textColor="black"
 				/>
 			</span>
-			<span on:click={signInWithFacebook}>
+			<span
+				on:click={() => {
+					signIn(facebookAuth);
+				}}
+			>
 				<LoginProvider
 					text="Sign in with facebook"
 					bgColor="blue-500"
@@ -99,7 +78,11 @@
 					textColor="white"
 				/>
 			</span>
-			<span on:click={signInWithGithub}>
+			<span
+				on:click={() => {
+					signIn(githubAuth);
+				}}
+			>
 				<LoginProvider
 					text="Sign in with Github"
 					bgColor="black"
