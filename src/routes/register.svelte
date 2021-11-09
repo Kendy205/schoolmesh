@@ -4,7 +4,7 @@
 	import LoginProviders from '../components/login/LoginProviders.svelte';
 	import Button from '../components/ui/Button.svelte';
 	import { auth, sendToDatabase } from '../lib/firebase';
-	import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+	import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 	import { goto } from '$app/navigation';
 	import { setDoc, serverTimestamp, doc } from 'firebase/firestore';
 	import { getNotificationsContext } from 'svelte-notifications';
@@ -70,6 +70,7 @@
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				const user = userCredential.user;
+				sendEmailVerification(user);
 				console.log(user);
 				sendToDatabase(user)
 					.then(() => {
@@ -77,13 +78,11 @@
 						goto('/');
 					})
 					.catch((error) => {
-						console.log('error v databázi');
 						errorToast(error);
 					});
 			})
 			.catch((error) => {
 				let errorText;
-				console.log(error);
 				if (error.code == 'auth/email-already-in-use') {
 					errorText = 'The email adress is already in use, try another one';
 				} else if (error.code == 'auth/weak-password') {
@@ -98,7 +97,7 @@
 	// Succes Toast
 	const signInToast = () => {
 		addNotification({
-			text: 'Wrong email address',
+			text: 'You are successfully signed in',
 			position: 'top-right',
 			heading: 'Sign in',
 			type: '',

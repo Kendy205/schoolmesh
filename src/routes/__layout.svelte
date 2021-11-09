@@ -29,7 +29,6 @@
 	//Listens for authStatechanges and updates the authStore accordingly
 	onMount(() => {
 		onAuthStateChanged(auth, (user) => {
-			console.log(user);
 			authStore.set({
 				isLoggedIn: user !== null,
 				user

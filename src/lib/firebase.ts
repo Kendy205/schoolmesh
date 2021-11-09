@@ -1,9 +1,25 @@
-import { initializeApp } from "firebase/app";
-import {getFirestore} from "firebase/firestore"
-import {getAuth, GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider} from "firebase/auth"
-import {setDoc,doc} from "firebase/firestore"
-import { goto } from "$app/navigation";
-import { getNotificationsContext } from 'svelte-notifications';
+import {
+  initializeApp
+} from "firebase/app";
+import {
+  getFirestore
+} from "firebase/firestore"
+import {
+  getAuth,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  GithubAuthProvider
+} from "firebase/auth"
+import {
+  setDoc,
+  doc
+} from "firebase/firestore"
+import {
+  goto
+} from "$app/navigation";
+import {
+  getNotificationsContext
+} from 'svelte-notifications';
 
 
 const firebaseConfig = {
@@ -32,22 +48,24 @@ export const githubAuth = new GithubAuthProvider()
 
 // Send user data to database
 export const sendToDatabase = async (user) => {
+  console.log(user.uid)
+  console.log(user.email)
+  console.log(user.id)
   const userPrivateRef = doc(db, 'users', `${user.uid}`, 'private', 'data');
   const userPublicRef = doc(db, 'users', `${user.uid}`, 'public', 'data');
   await setDoc(
-    userPrivateRef,
-    {
-      email: user.email
-    },
-    { merge: true }
-    );
-    await setDoc(
-      userPublicRef,
-      {
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-        uid: user.uid
-      },
-      { merge: true }
-      )
-    };
+    userPrivateRef, {
+      email: user.email,
+      uid: user.uid,
+    }, {
+      merge: true
+    }
+  );
+  await setDoc(userPublicRef, {
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+    uid: user.uid
+  }, {
+    merge: true
+  })
+};
