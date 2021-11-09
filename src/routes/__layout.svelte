@@ -6,6 +6,7 @@
 </script>
 
 <script lang="ts">
+	// @ts-nocheck
 	import '../app.css';
 	import { register, init, getLocaleFromNavigator, isLoading } from 'svelte-i18n';
 	import Nav from '../components/nav/Nav.svelte';
@@ -44,7 +45,10 @@
 		href="https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap"
 		rel="stylesheet"
 	/>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<link
+		href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+		rel="stylesheet"
+	/>
 </svelte:head>
 
 {#if $isLoading}
@@ -54,7 +58,7 @@
 	<Notifications item={Toast}>
 		<main class="md:ml-64">
 			<Nav />
-			<div class="m-12 container">
+			<div class="container p-12">
 				<slot />
 			</div>
 		</main>

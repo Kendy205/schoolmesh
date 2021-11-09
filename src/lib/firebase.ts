@@ -1,6 +1,10 @@
 import { initializeApp } from "firebase/app";
 import {getFirestore} from "firebase/firestore"
 import {getAuth, GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider} from "firebase/auth"
+import {setDoc,doc} from "firebase/firestore"
+import { goto } from "$app/navigation";
+import { getNotificationsContext } from 'svelte-notifications';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAfM40T5V1tZ33zgLzY4M229ZLv3W7j1Rg",
@@ -24,3 +28,26 @@ export const auth = getAuth()
 export const googleAuth = new GoogleAuthProvider()
 export const facebookAuth = new FacebookAuthProvider()
 export const githubAuth = new GithubAuthProvider()
+
+
+// Send user data to database
+export const sendToDatabase = async (user) => {
+  const userPrivateRef = doc(db, 'users', `${user.uid}`, 'private', 'data');
+  const userPublicRef = doc(db, 'users', `${user.uid}`, 'public', 'data');
+  await setDoc(
+    userPrivateRef,
+    {
+      email: user.email
+    },
+    { merge: true }
+    );
+    await setDoc(
+      userPublicRef,
+      {
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        uid: user.uid
+      },
+      { merge: true }
+      )
+    };

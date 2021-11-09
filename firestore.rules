@@ -4,11 +4,11 @@ service cloud.firestore {
     match /{document=**} {
       allow read, write: if false;
       match /users/{userId}{
-        match /privateInfo/data {
+        match /private/data {
           allow create: if canCreateNewProfile();
           allow update: if canCreateNewProfile() && request.auth.uid == resource.data.uid;
         }
-        match /publicInfo/data{
+        match /public/data {
           allow create: if canCreateNewProfile();
           allow update: if canCreateNewProfile() && request.auth.uid == resource.data.uid;
         }

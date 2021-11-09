@@ -25,7 +25,7 @@
 	<div class="flex h-full">
 		<span>
 			<h4 class="text-white mb-1">{notification.heading}</h4>
-			<p>{notification.text}</p>
+			<p>{@html notification.text}</p>
 		</span>
 		<div class="flex-grow" />
 		<div class="material-icons cursor-pointer" on:click={handleButtonClick}>close</div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	// @ts-nocheck
 	import Header from '../components/ui/Header.svelte';
 	import LoginProviders from '../components/login/LoginProviders.svelte';
 	import Button from '../components/ui/Button.svelte';
@@ -30,16 +31,14 @@
 <section>
 	<Header>Login</Header>
 
-	<div class="grid grid-cols-2 gap-24">
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-24">
 		<div class="shadow-lg p-8 rounded-md bg-white">
 			<h2 class="mb-4">With your mesh account</h2>
 			<ul>
 				<li><input class="input-button" type="text" placeholder="E-mail" /></li>
 				<li><input class="input-button" type="password" placeholder="Password" /></li>
 			</ul>
-			<div class="border-2 border-blue-meshblue-500">
-				<Button text="Sign in" bgColor="meshblue-500" icon="search" textColor="white" />
-			</div>
+			<Button text="Sign in" bgColor="meshblue-500" icon="search" textColor="white" />
 		</div>
 		<!-- Login Providers -->
 		<LoginProviders />

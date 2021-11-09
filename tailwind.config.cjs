@@ -26,7 +26,8 @@ const config = {
           700: "#000E12",
           800: "#000A0C",
           900: "#000506"
-        }
+        },
+        facebook: "#1877f2"
       },
       fontFamily: {
         spartan: ["Spartan", "sans-serif"]

@@ -1,31 +1,35 @@
 <script lang="ts">
+	// @ts-nocheck
 	import LoginProvider from './LoginProvider.svelte';
-	import { auth, db, googleAuth, facebookAuth, githubAuth } from '../../lib/firebase';
+	import {
+		auth,
+		db,
+		googleAuth,
+		facebookAuth,
+		githubAuth,
+		sendToDatabase
+	} from '../../lib/firebase';
 	import { signInWithPopup } from 'firebase/auth';
 	import { goto } from '$app/navigation';
 	import { setDoc, serverTimestamp, doc } from 'firebase/firestore';
 	import { getNotificationsContext } from 'svelte-notifications';
 	const { addNotification } = getNotificationsContext();
 
-	// Sign user in
-	// @param provider = Firebase login provider
+	// Signs user in
 	function signIn(provider) {
 		signInWithPopup(auth, provider).then((result) => {
-			try {
-				sendToDatabase(result.user);
-			} catch (e) {
-				addNotification({
-					text: `Something went wrong. Try refreshing the page </br>${e}`,
-					position: 'top-right',
-					heading: 'Something wen wrong.',
-					type: '',
-					removeAfter: 4000
+			sendToDatabase(result.user)
+				.then(() => {
+					signInToast();
+					goto('/');
+				})
+				.catch((error) => {
+					errorToast(error);
 				});
-			}
 		});
 	}
 
-	// A toast confirming user is signed in
+	// Succes Toast
 	const signInToast = () => {
 		addNotification({
 			text: 'You were successfully signed in',
@@ -36,38 +40,15 @@
 		});
 	};
 
-	const sendToDatabase = async (user) => {
-		const userPrivateRef = doc(db, 'users', `${user.id}`, 'privateInfo', 'data');
-		const userPublicRef = doc(db, 'users', `${user.id}`, 'publicInfo', 'data');
-		await setDoc(
-			userPrivateRef,
-			{
-				email: user.email
-			},
-			{ merge: true }
-		);
-		await setDoc(
-			userPublicRef,
-			{
-				displayName: user.displayName,
-				photoURL: user.photoURL,
-				uid: user.uid
-			},
-			{ merge: true }
-		)
-			.then(() => {
-				goto('/');
-				signInToast();
-			})
-			.catch((e) => {
-				addNotification({
-					text: `Try refreshing the page </br> ${e}`,
-					position: 'top-right',
-					heading: 'Something went wrong',
-					type: 'error',
-					removeAfter: 4000
-				});
-			});
+	// Error Toast
+	const errorToast = (e) => {
+		addNotification({
+			text: `Try refreshing the page </br> ${e}`,
+			position: 'top-right',
+			heading: 'Something went wrong',
+			type: 'error',
+			removeAfter: 4000
+		});
 	};
 </script>
 
@@ -80,7 +61,7 @@
 	>
 		<LoginProvider
 			text="Sign in with google"
-			bgColor="white"
+			bgColor=""
 			logo="/social-sites/g-logo.png"
 			textColor="black"
 		/>
@@ -109,4 +90,6 @@
 			textColor="white"
 		/>
 	</span>
+	<div class="bg-blue-500" />
+	<div class="bg-black" />
 </div>
