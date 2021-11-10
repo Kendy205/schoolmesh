@@ -52,9 +52,8 @@ export const sendToDatabase = async (user) => {
   console.log(user.email)
   console.log(user.id)
   const userPrivateRef = doc(db, 'users', `${user.uid}`, 'private', 'data');
-  const userPublicRef = doc(db, 'users', `${user.uid}`, 'public', 'data');
-  await setDoc(
-    userPrivateRef, {
+  const userPublicRef = doc(db, 'users', `${user.uid}`);
+  await setDoc(userPrivateRef, {
       email: user.email,
       uid: user.uid,
     }, {
