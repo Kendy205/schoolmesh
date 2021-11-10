@@ -24,14 +24,22 @@ describe("Signing up and registering", () => {
     teardown()
   })
 
-  test("Deny create profile because it spoofs its id", async () =>{
-    await assertFails(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/privateInfo/data`), {
+  test("Deny create profile because it spoofs its uid", async () =>{
+    await assertFails(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/private/data`), {
+      uid: "some random auth token",
+    }));
+    await assertFails(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}`), {
       uid: "some random auth token",
     }));
   })
 
-  test("Allow creating profile with valid fields", async () => {
-    await assertSucceeds(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/privateInfo/data`), {
+  test("Allow creating profile", async () => {
+    await assertSucceeds(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/private/data`), {
+      displayName: alice.authToken.displayName,
+      photoURL: alice.authToken.photoURL,
+      uid: alice.authToken.user_id,
+    }));
+    await assertSucceeds(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}`), {
       displayName: alice.authToken.displayName,
       photoURL: alice.authToken.photoURL,
       uid: alice.authToken.user_id,
@@ -39,7 +47,12 @@ describe("Signing up and registering", () => {
   });
 
   test("Allow updating profile", async () => {
-    await assertSucceeds(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/privateInfo/data`), {
+    await assertSucceeds(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/private/data`), {
+      displayName: "Bob",
+      photoURL: alice.authToken.photoURL,
+      uid: alice.authToken.user_id,
+    }));
+    await assertSucceeds(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}`), {
       displayName: "Bob",
       photoURL: alice.authToken.photoURL,
       uid: alice.authToken.user_id,
@@ -47,7 +60,12 @@ describe("Signing up and registering", () => {
   })
 
   test("Deny updating profile because it tries to use different uid", async () =>{
-    await assertFails(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/privateInfo/data`), {
+    await assertFails(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}/private/data`), {
+      displayName: alice.authToken.displayName,
+      photoURL: alice.authToken.photoURL,
+      uid: "spoofed token",
+    }));
+    await assertFails(setDoc(doc(aliceDb, `users/${alice.authToken.user_id}`), {
       displayName: alice.authToken.displayName,
       photoURL: alice.authToken.photoURL,
       uid: "spoofed token",
