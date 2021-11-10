@@ -9,12 +9,12 @@
 
 <button
 	on:click
-	class="w-{width} rounded-md leading-8 flex {`bg-${bgColor}`} p-2 pr-3 align-middle text-{textColor} {disabled
+	class="w-{width} rounded-md flex {`bg-${bgColor}`} p-2 pr-3 leading-8 align-middle text-{textColor} {disabled
 		? 'bg-gray-400 cursor-not-allowed'
 		: ''} duration-300 cursor-pointer mb-4"
 	{disabled}
 >
-	<div class="material-icons leading-8 mr-2">
+	<div class="material-icons mr-2 align-middle leading-8">
 		{icon}
 	</div>
 	{text}

@@ -39,6 +39,8 @@
 				<li><input class="input-button" type="password" placeholder="Password" /></li>
 			</ul>
 			<Button text="Sign in" bgColor="meshblue-500" icon="search" textColor="white" />
+
+			<a class="text-gray-500 link" href="/register">Don't have an account? Create one here!</a>
 		</div>
 		<!-- Login Providers -->
 		<LoginProviders />

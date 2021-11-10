@@ -15,7 +15,7 @@
   h4{
     @apply text-2xl font-spartan font-extrabold text-mesh-500;
   }
-  a .link{
+  a.link{
     @apply hover:underline
   }
 }
