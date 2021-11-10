@@ -46,7 +46,7 @@ export const facebookAuth = new FacebookAuthProvider()
 export const githubAuth = new GithubAuthProvider()
 
 
-// Send user data to database
+// After registrations this function sends user data to database
 export const sendToDatabase = async (user) => {
   console.log(user.uid)
   console.log(user.email)
