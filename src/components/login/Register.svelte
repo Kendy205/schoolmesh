@@ -144,18 +144,18 @@
 			</li>
 			<Button
 				text="Toglle passsword visibility"
-				bgColor=""
+				bg-color=""
 				icon={visibility ? 'visibility' : 'visibility_off'}
-				textColor="black"
+				text-color="black"
 				on:click={toggleVisibility}
 			/>
 		</ul>
 
 		<Button
 			text="Sign in"
-			bgColor="meshblue-500"
+			bg-color="meshblue-500"
 			icon="search"
-			textColor="white"
+			text-color="white"
 			disabled={!canSignUp}
 			on:click={signUp}
 		/>
