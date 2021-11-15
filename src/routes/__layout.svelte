@@ -57,7 +57,7 @@
 	<Notifications item={Toast}>
 		<main class="md:ml-64">
 			<Nav />
-			<div class="container p-12">
+			<div class="container p-12 w-full">
 				<slot />
 			</div>
 		</main>
