@@ -10,12 +10,14 @@
 	import '../app.css';
 	import { register, init, getLocaleFromNavigator, isLoading } from 'svelte-i18n';
 	import Nav from '../components/nav/Nav.svelte';
-	import { auth } from '../lib/firebase';
+	import { auth, db } from '../lib/firebase';
 	import { onAuthStateChanged } from 'firebase/auth';
 	import { onMount } from 'svelte';
 	import authStore from '../lib/authStore';
 	import Notifications from 'svelte-notifications';
 	import Toast from '../components/ui/Toast.svelte';
+	import { doc, DocumentSnapshot, getDoct } from '@firebase/firestore';
+	import { goto } from '$app/navigation';
 
 	// Lokalizace
 	register('en', () => import('../languages/en.json'));
@@ -33,6 +35,18 @@
 				isLoggedIn: user !== null,
 				user
 			});
+
+			// Check if the user has a username
+			if (user !== null) {
+				const usernameSnapshot: DocumentSnapshot = getDoc(doc(db, 'usernames', user.uid));
+
+				// If user has username do nothing
+				if (usernameSnapshot.exists) {
+				} else {
+					// Redirect him settings, so he set username
+					goto('setusername');
+				}
+			}
 		});
 	});
 </script>

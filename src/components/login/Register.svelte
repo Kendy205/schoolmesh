@@ -120,7 +120,7 @@
 		<ul>
 			<li>
 				<input class="input-button" type="text" placeholder="E-mail" bind:value={email} />
-				<span class="material-icons text-{eCm} align-middle"> check_circle </span>
+				<span class="material-icons text-{eCm} align-middle leading-14"> check_circle </span>
 			</li>
 			<li>
 				<input
@@ -130,7 +130,7 @@
 					bind:value={password}
 					id="password"
 				/>
-				<span class="material-icons text-{pCm} align-middle"> check_circle </span>
+				<span class="material-icons text-{pCm} align-middle leading-14"> check_circle </span>
 			</li>
 			<li>
 				<input
@@ -140,25 +140,24 @@
 					bind:value={repeatPassword}
 					id="repeat_password"
 				/>
-				<span class="material-icons text-{rPCm} align-middle"> check_circle </span>
+				<span class="material-icons text-{rPCm} align-middle leading-14"> check_circle </span>
 			</li>
 			<Button
-				text="Toglle passsword visibility"
-				bg-color=""
 				icon={visibility ? 'visibility' : 'visibility_off'}
 				text-color="black"
 				on:click={toggleVisibility}
-			/>
+			>
+				Toggle password visibility
+			</Button>
 		</ul>
 
 		<Button
-			text="Sign in"
 			bg-color="meshblue-500"
 			icon="search"
 			text-color="white"
 			disabled={!canSignUp}
-			on:click={signUp}
-		/>
+			on:click={signUp}>Sign In</Button
+		>
 		<div class="text-gray-600">
 			<ul class="list-disc list-inside">
 				<li>Your password must have atleast 6 characters</li>
@@ -172,6 +171,6 @@
 
 <style>
 	.input-button {
-		@apply w-72 flex-auto p-2 text-black rounded-md border-2 border-mesh-300 focus:border-meshblue-500 outline-none leading-8 mb-4;
+		@apply w-72 flex-auto p-2 text-black rounded-md border-2 border-mesh-300 focus:border-meshblue-500 outline-none leading-8 my-2 align-middle;
 	}
 </style>

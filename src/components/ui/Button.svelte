@@ -1,5 +1,4 @@
 <script lang="ts">
-	export let text: string; // Displayed text
 	export let icon: string; // Icon to display from material-icons
 	export let bg_color: string = 'meshblue-500'; // Background color don't forget to add the color to tailwind_bundle.svelte so tailwind bundles it if it isn't already used
 	export let text_color: string = 'white'; // Color of the text
@@ -17,5 +16,5 @@
 	<div class="material-icons mr-2 ">
 		{icon}
 	</div>
-	{text}
+	<slot />
 </button>

@@ -29,7 +29,7 @@
 			<div class="material-icons leading-14 {rotate} duration-300">expand_more</div>
 		</div>
 	</div>
-	<div class="dropdown bg-meshblue-500 pb-2">
+	<div class="dropdown bg-meshblue-500">
 		<slot />
 	</div>
 </section>
