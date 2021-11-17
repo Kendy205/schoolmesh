@@ -16,7 +16,7 @@
 	import authStore from '../lib/authStore';
 	import Notifications from 'svelte-notifications';
 	import Toast from '../components/ui/Toast.svelte';
-	import { doc, DocumentSnapshot, getDoct } from '@firebase/firestore';
+	import { doc, DocumentSnapshot, getDoc, where } from '@firebase/firestore';
 	import { goto } from '$app/navigation';
 
 	// Lokalizace
@@ -38,13 +38,21 @@
 
 			// Check if the user has a username
 			if (user !== null) {
-				const usernameSnapshot: DocumentSnapshot = getDoc(doc(db, 'usernames', user.uid));
-
+				const usernameSnapshot: DocumentSnapshot = getDoc(
+					doc(db, 'usernames'),
+					where('uid', '==', $authStore.user.uid)
+				);
+				let redirected = false;
 				// If user has username do nothing
-				if (usernameSnapshot.exists) {
-				} else {
-					// Redirect him settings, so he set username
-					goto('setusername');
+				if (redirected == false) {
+					if (usernameSnapshot.exists()) {
+						console.log('already has username');
+					} else {
+						// Redirect him settings, so he set username
+						goto('settings');
+						redirected = true;
+						console.log('redirect');
+					}
 				}
 			}
 		});
