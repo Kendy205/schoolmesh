@@ -6,6 +6,7 @@
 	import { goto } from '$app/navigation';
 	import { getNotificationsContext } from 'svelte-notifications';
 	import NavItem from './NavItem.svelte';
+	import NavDropdown from './NavDropdown.svelte';
 	const { addNotification } = getNotificationsContext();
 
 	function logOut() {
