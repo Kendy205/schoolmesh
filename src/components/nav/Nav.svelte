@@ -1,13 +1,11 @@
 <script lang="ts">
 	import NavLogo from './NavLogo.svelte';
-	import NavDropdown from './NavDropdown.svelte';
-	import NavItem from './NavItem.svelte';
-	import SingleItem from './SingleItem.svelte';
 	import authStore from '../../lib/authStore';
 	import { auth } from '../../lib/firebase';
 	import { signOut } from 'firebase/auth';
 	import { goto } from '$app/navigation';
 	import { getNotificationsContext } from 'svelte-notifications';
+	import NavItem from './NavItem.svelte';
 	const { addNotification } = getNotificationsContext();
 
 	function logOut() {
@@ -35,21 +33,10 @@
 </script>
 
 <nav
-	class="fixed top-0 left-0 md:w-64 md:scale-100 scale-0 bg-meshblue-600 nav-shadow h-screen min-h-screen text-white"
+	class="fixed left-0 md:w-64 md:scale-100 scale-0 bg-meshblue-600 min-h-screen text-white flex flex-col"
 >
-	<NavLogo />
-	<SingleItem text="home" link="/" />
-	<NavDropdown text="Profile">
-		<NavItem text="Your profile" icon="account_circle" link="/" />
-		<NavItem text="Settings" icon="settings" link="/" />
-		<div class="h-4" />
-
-		{#if $authStore.isLoggedIn}
-			<span on:click={logOut}>
-				<NavItem text="Log Out" icon="logout" link="/" />
-			</span>
-		{:else}
-			<NavItem text="Log in" icon="login" link="/login" />
-		{/if}
-	</NavDropdown>
+	<div class="m-3">
+		<NavLogo />
+		<NavItem>Home</NavItem>
+	</div>
 </nav>
