@@ -1,14 +1,7 @@
 <script lang="ts">
 	// @ts-nocheck
 	import LoginProvider from './LoginProvider.svelte';
-	import {
-		auth,
-		db,
-		googleAuth,
-		facebookAuth,
-		githubAuth,
-		sendToDatabase
-	} from '../../lib/firebase';
+	import { auth, db, googleAuth, facebookAuth, githubAuth, sendToDatabase } from '../../firebase';
 	import { signInWithPopup } from 'firebase/auth';
 	import { goto } from '$app/navigation';
 	import { setDoc, serverTimestamp, doc } from 'firebase/firestore';

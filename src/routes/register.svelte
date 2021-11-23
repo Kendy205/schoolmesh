@@ -1,9 +1,9 @@
 <script lang="ts">
 	//@ts-nocheck
-	import Header from '../components/ui/Header.svelte';
-	import LoginProviders from '../components/login/LoginProviders.svelte';
-	import Register from '../components/login/Register.svelte';
-	import Button from '../components/ui/Button.svelte';
+	import Header from '../lib/components/ui/Header.svelte';
+	import LoginProviders from '../lib/components/login/LoginProviders.svelte';
+	import Register from '../lib/components/login/Register.svelte';
+	import Button from '../lib/components/ui/Button.svelte';
 </script>
 
 <section>

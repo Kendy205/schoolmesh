@@ -1,7 +1,7 @@
 <script lang="ts">
 	//@ts-nocheck
 	import Button from '../ui/Button.svelte';
-	import { auth, sendToDatabase } from '../../lib/firebase';
+	import { auth, sendToDatabase } from '../../firebase';
 	import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 	import { goto } from '$app/navigation';
 	import { getNotificationsContext } from 'svelte-notifications';

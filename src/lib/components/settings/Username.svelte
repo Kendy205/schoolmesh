@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Button from '@components/ui/Button.svelte';
-	import Header from '@components/ui/Header.svelte';
+	import Button from '@lib/components/ui/Button.svelte';
+	import Header from '@lib/components/ui/Header.svelte';
 
-	import Input from '@components/ui/Input.svelte';
+	import Input from '@lib/components/ui/Input.svelte';
 	import {
 		doc,
 		DocumentReference,

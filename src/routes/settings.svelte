@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Input from '../components/ui/Input.svelte';
-	import Header from '../components/ui/Header.svelte';
-	import Button from '../components/ui/Button.svelte';
+	import Input from '../lib/components/ui/Input.svelte';
+	import Header from '../lib/components/ui/Header.svelte';
+	import Button from '../lib/components/ui/Button.svelte';
 	import authStore from '@lib/authStore';
-	import Username from '../components/settings/Username.svelte';
+	import Username from '../lib/components/settings/Username.svelte';
 </script>
 
 <Header>Settings</Header>

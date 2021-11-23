@@ -1,12 +1,14 @@
 <script lang="ts">
+	//@ts-nocheck
 	import NavLogo from './NavLogo.svelte';
-	import authStore from '../../lib/authStore';
-	import { auth } from '../../lib/firebase';
+	import authStore from '../../authStore';
+	import { auth } from '../../firebase';
 	import { signOut } from 'firebase/auth';
 	import { goto } from '$app/navigation';
 	import { getNotificationsContext } from 'svelte-notifications';
 	import NavItem from './NavItem.svelte';
 	import NavDropdown from './NavDropdown.svelte';
+	import NavProfile from './NavProfile.svelte';
 	const { addNotification } = getNotificationsContext();
 
 	function logOut() {
@@ -36,8 +38,13 @@
 <nav
 	class="fixed left-0 md:w-64 md:scale-100 scale-0 bg-meshblue-600 min-h-screen text-white flex flex-col"
 >
-	<div class="m-3">
-		<NavLogo />
-		<NavItem>Home</NavItem>
-	</div>
+	<NavLogo />
+	<NavItem link="/">Home</NavItem>
+	<NavItem link="/classes" icon="school">Classes</NavItem>
+	<NavItem link="/chat" icon="message">Chat</NavItem>
+	<NavItem link="/notes" icon="description">Notes</NavItem>
+	<NavItem link="/homework" icon="task">Homework</NavItem>
+	<NavItem link="/settings" icon="settings">Settings</NavItem>
+	<div class="flex-grow" />
+	<NavProfile />
 </nav>
