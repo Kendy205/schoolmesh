@@ -2,25 +2,18 @@ import {
   initializeApp
 } from "firebase/app";
 import {
+  Firestore,
   getFirestore
 } from "firebase/firestore"
 import {
   getAuth,
   GoogleAuthProvider,
   FacebookAuthProvider,
-  GithubAuthProvider
+  GithubAuthProvider,
+  Auth,
+  AuthProvider
 } from "firebase/auth"
-import {
-  setDoc,
-  doc
-} from "firebase/firestore"
-import {
-  goto
-} from "$app/navigation";
-import {
-  getNotificationsContext
-} from 'svelte-notifications';
-
+import { Functions, getFunctions } from "firebase/functions"
 
 const firebaseConfig = {
   apiKey: "AIzaSyAfM40T5V1tZ33zgLzY4M229ZLv3W7j1Rg",
@@ -37,34 +30,11 @@ export const app = initializeApp(firebaseConfig);
 
 
 //Exports
-export const db = getFirestore();
-export const auth = getAuth()
+export const db:Firestore = getFirestore();
+export const auth:Auth = getAuth()
+export const functions:Functions = getFunctions(app)
 
 // Auth Providers
-export const googleAuth = new GoogleAuthProvider()
-export const facebookAuth = new FacebookAuthProvider()
-export const githubAuth = new GithubAuthProvider()
-
-
-// After registrations this function sends user data to database
-export const sendToDatabase = async (user) => {
-  console.log(user.uid)
-  console.log(user.email)
-  console.log(user.id)
-  const userPrivateRef = doc(db, 'users', `${user.uid}`, 'private', 'data');
-  const userPublicRef = doc(db, 'users', `${user.uid}`);
-  await setDoc(userPrivateRef, {
-      email: user.email,
-      uid: user.uid,
-    }, {
-      merge: true
-    }
-  );
-  await setDoc(userPublicRef, {
-    displayName: user.displayName,
-    photoURL: user.photoURL,
-    uid: user.uid
-  }, {
-    merge: true
-  })
-};
+export const googleAuth:AuthProvider = new GoogleAuthProvider()
+export const facebookAuth:AuthProvider = new FacebookAuthProvider()
+export const githubAuth:AuthProvider = new GithubAuthProvider()
