@@ -2,7 +2,7 @@
 	import Input from '../lib/components/ui/Input.svelte';
 	import Header from '../lib/components/ui/Header.svelte';
 	import Button from '../lib/components/ui/Button.svelte';
-	import authStore from '@lib/authStore';
+	import authStore from '$lib/authStore';
 	import Username from '../lib/components/settings/Username.svelte';
 </script>
 

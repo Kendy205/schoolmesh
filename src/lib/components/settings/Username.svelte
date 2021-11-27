@@ -1,12 +1,11 @@
 <script lang="ts">
-	import Button from '@lib/components/ui/Button.svelte';
-	import Input from '@lib/components/ui/Input.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import Input from '$lib/components/ui/Input.svelte';
 	import { doc, DocumentReference, DocumentSnapshot, getDoc } from 'firebase/firestore';
-	import authStore from '@lib/authStore';
-	import { functions, db } from '@lib/firebase';
+	import { functions, db } from '$lib/firebase';
 	import debounce from 'lodash.debounce';
 	import { httpsCallable } from 'firebase/functions';
-	import Loader from '@components/ui/Loader.svelte';
+	import Loader from '$lib/components/ui/Loader.svelte';
 	import { slide } from 'svelte/transition';
 
 	let username: string; // something to bind

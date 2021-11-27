@@ -1,9 +1,7 @@
 <script lang="ts">
-	import Button from '@lib/components/ui/Button.svelte';
-	import authStore from '@lib/authStore';
-	import { auth } from '@lib/firebase';
+	import authStore from '$lib/authStore';
+	import { auth } from '$lib/firebase';
 	import { signOut } from 'firebase/auth';
-	import NavItem from './NavItem.svelte';
 </script>
 
 <section class="p-2">

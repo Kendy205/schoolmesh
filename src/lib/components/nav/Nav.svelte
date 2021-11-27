@@ -1,38 +1,7 @@
 <script lang="ts">
-	//@ts-nocheck
 	import NavLogo from './NavLogo.svelte';
-	import authStore from '../../authStore';
-	import { auth } from '../../firebase';
-	import { signOut } from 'firebase/auth';
-	import { goto } from '$app/navigation';
-	import { getNotificationsContext } from 'svelte-notifications';
 	import NavItem from './NavItem.svelte';
-	import NavDropdown from './NavDropdown.svelte';
 	import NavProfile from './NavProfile.svelte';
-	const { addNotification } = getNotificationsContext();
-
-	function logOut() {
-		console.log('logOut');
-		signOut(auth)
-			.then(() => {
-				addNotification({
-					text: 'You were successfully logged out',
-					position: 'top-right',
-					heading: 'Signed out',
-					type: '',
-					removeAfter: 4000
-				});
-			})
-			.catch((e) => {
-				addNotification({
-					text: 'Something went wrong please try again in few minutes',
-					position: 'top-right',
-					heading: 'Something went wrong',
-					type: 'error',
-					removeAfter: 4000
-				});
-			});
-	}
 </script>
 
 <nav
