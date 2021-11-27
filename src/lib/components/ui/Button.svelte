@@ -8,9 +8,9 @@
 
 <button
 	on:click
-	class="w-{width} rounded-md flex items-center justify-left {`bg-${bg_color}`} p-2 pr-3 leading-8 align-middle text-{text_color} text-left {disabled
+	class="w-{width} rounded-md flex items-center justify-left p-2 pr-3 leading-8 align-middle text-{text_color} text-left {disabled
 		? 'bg-gray-400 cursor-not-allowed'
-		: ''} duration-300 cursor-pointer mb-4"
+		: `bg-${bg_color}`} duration-300 cursor-pointer mb-4"
 	{disabled}
 >
 	<div class="material-icons mr-2 ">

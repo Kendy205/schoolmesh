@@ -35,26 +35,6 @@
 				isLoggedIn: user !== null,
 				user
 			});
-
-			// Check if the user has a username
-			if (user !== null) {
-				const usernameSnapshot: DocumentSnapshot = getDoc(
-					doc(db, 'usernames'),
-					where('uid', '==', $authStore.user.uid)
-				);
-				let redirected = false;
-				// If user has username do nothing
-				if (redirected == false) {
-					if (usernameSnapshot.exists()) {
-						console.log('already has username');
-					} else {
-						// Redirect him settings, so he set username
-						goto('settings');
-						redirected = true;
-						console.log('redirect');
-					}
-				}
-			}
 		});
 	});
 </script>

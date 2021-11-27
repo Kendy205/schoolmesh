@@ -6402,6 +6402,11 @@ svelte-jester@^2.0.1:
   resolved "https://registry.yarnpkg.com/svelte-jester/-/svelte-jester-2.1.5.tgz#c9d47ee202a3676883cd8ea5b85d66fb5b077db1"
   integrity sha512-T3JoPsNYltlN2MiVFDxAMOulIO4fztFFI3DhOkzbs1yZQCUFp6sqS6aqusBsIEMVmXaEDW4HO/6bX+CuwuEUSw==
 
+svelte-loading-spinners@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/svelte-loading-spinners/-/svelte-loading-spinners-0.1.7.tgz#3fa6fa0ef67ab635773bf20b07d0b071debbadaa"
+  integrity sha512-EKCId1DjVL2RSUVJJsvtNcqQHox03XIgh4xh/4p7r6ST7d8mut6INY9/LqK4A17PFU64+3quZmqiSfOlf480CA==
+
 svelte-notifications@^0.9.91:
   version "0.9.91"
   resolved "https://registry.yarnpkg.com/svelte-notifications/-/svelte-notifications-0.9.91.tgz#9e3bed9976aba7ed3b9e848d7c3c35fa0e7ccc2d"

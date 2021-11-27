@@ -1,25 +1,14 @@
 <script lang="ts">
 	// @ts-nocheck
 	import LoginProvider from './LoginProvider.svelte';
-	import { auth, db, googleAuth, facebookAuth, githubAuth, sendToDatabase } from '../../firebase';
+	import { auth, db, googleAuth, facebookAuth, githubAuth } from '../../firebase';
 	import { signInWithPopup } from 'firebase/auth';
-	import { goto } from '$app/navigation';
-	import { setDoc, serverTimestamp, doc } from 'firebase/firestore';
 	import { getNotificationsContext } from 'svelte-notifications';
 	const { addNotification } = getNotificationsContext();
 
 	// Signs user in
 	function signIn(provider) {
-		signInWithPopup(auth, provider).then((result) => {
-			sendToDatabase(result.user)
-				.then(() => {
-					signInToast();
-					goto('/');
-				})
-				.catch((error) => {
-					errorToast(error);
-				});
-		});
+		signInWithPopup(auth, provider);
 	}
 
 	// Succes Toast

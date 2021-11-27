@@ -43,6 +43,7 @@
 		"svelte": "^3.42.6",
 		"svelte-check": "^2.2.6",
 		"svelte-jester": "^2.0.1",
+		"svelte-loading-spinners": "^0.1.7",
 		"svelte-preprocess": "^4.9.8",
 		"tailwindcss": "^2.2.16",
 		"ts-jest": "^27.0.0",

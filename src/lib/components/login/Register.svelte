@@ -1,7 +1,7 @@
 <script lang="ts">
 	//@ts-nocheck
 	import Button from '../ui/Button.svelte';
-	import { auth, sendToDatabase } from '../../firebase';
+	import { auth } from '../../firebase';
 	import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 	import { goto } from '$app/navigation';
 	import { getNotificationsContext } from 'svelte-notifications';
@@ -68,15 +68,6 @@
 			.then((userCredential) => {
 				const user = userCredential.user;
 				sendEmailVerification(user);
-				console.log(user);
-				sendToDatabase(user)
-					.then(() => {
-						signInToast();
-						goto('/');
-					})
-					.catch((error) => {
-						errorToast(error);
-					});
 			})
 			.catch((error) => {
 				let errorText;

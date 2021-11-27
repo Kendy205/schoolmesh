@@ -6,6 +6,7 @@
 5. svelte-notifications
 6. firebase
 7. lodash.debounce
+8. svelte-loading-spinner
 
 # Potential security concerns
 `components/ui/toast.svelte` uses @html to render html in the notifications, could result in xss

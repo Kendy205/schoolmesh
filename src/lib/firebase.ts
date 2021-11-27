@@ -9,11 +9,9 @@ import {
   getAuth,
   GoogleAuthProvider,
   FacebookAuthProvider,
-  GithubAuthProvider,
-  Auth,
-  AuthProvider
+  GithubAuthProvider
 } from "firebase/auth"
-import { Functions, getFunctions } from "firebase/functions"
+import { getFunctions } from "firebase/functions"
 
 const firebaseConfig = {
   apiKey: "AIzaSyAfM40T5V1tZ33zgLzY4M229ZLv3W7j1Rg",
@@ -30,11 +28,11 @@ export const app = initializeApp(firebaseConfig);
 
 
 //Exports
-export const db:Firestore = getFirestore();
-export const auth:Auth = getAuth()
-export const functions:Functions = getFunctions(app)
+export const db = getFirestore();
+export const auth = getAuth()
+export const functions = getFunctions(app, "europe-west1")
 
 // Auth Providers
-export const googleAuth:AuthProvider = new GoogleAuthProvider()
-export const facebookAuth:AuthProvider = new FacebookAuthProvider()
-export const githubAuth:AuthProvider = new GithubAuthProvider()
+export const googleAuth = new GoogleAuthProvider()
+export const facebookAuth = new FacebookAuthProvider()
+export const githubAuth = new GithubAuthProvider()
