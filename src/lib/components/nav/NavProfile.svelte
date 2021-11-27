@@ -2,6 +2,7 @@
 	import authStore from '$lib/authStore';
 	import { auth } from '$lib/firebase';
 	import { signOut } from 'firebase/auth';
+	import privateData from '$lib/privateData';
 </script>
 
 <section class="p-2">
@@ -11,7 +12,9 @@
 				<img src={$authStore.user.photoURL} alt="" class="w-12 h-12 rounded-full mr-2" />
 				<div class=" leading-tight">
 					<div class="font-semibold">{$authStore.user.displayName}</div>
-					<a href={`/user/${$authStore.user.uid}`} class="text-sm">View Profile</a>
+					{#if $privateData && $privateData.username !== undefined}
+						<div class="text-sm">@{$privateData.username}</div>
+					{/if}
 				</div>
 			</a>
 			<div class="flex-grow" />
@@ -20,7 +23,11 @@
 					signOut(auth);
 				}}
 			>
-				<div class="material-icons cursor-pointer">logout</div>
+				<div
+					class="material-icons cursor-pointer rounded-md bg-meshblue-800 p-1 hover:rounded-xl duration-200"
+				>
+					logout
+				</div>
 			</span>
 		</div>
 	{:else}
