@@ -3,3 +3,7 @@
   publish = "build"
 [[plugins]]
   package = "@netlify/plugin-functions-install-core"
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions-internal/__render"
+  status = 200
