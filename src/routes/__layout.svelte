@@ -10,14 +10,12 @@
 	import '../app.css';
 	import { register, init, getLocaleFromNavigator, isLoading } from 'svelte-i18n';
 	import Nav from '../lib/components/nav/Nav.svelte';
-	import { auth, db } from '../lib/firebase';
+	import { auth } from '../lib/firebase';
 	import { onAuthStateChanged } from 'firebase/auth';
 	import { onMount } from 'svelte';
 	import authStore from '../lib/authStore';
 	import Notifications from 'svelte-notifications';
 	import Toast from '../lib/components/ui/Toast.svelte';
-	import { doc, DocumentSnapshot, getDoc, where } from '@firebase/firestore';
-	import { goto } from '$app/navigation';
 
 	// Lokalizace
 	register('en', () => import('../languages/en.json'));
