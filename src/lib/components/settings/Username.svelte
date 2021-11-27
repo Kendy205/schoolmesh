@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Button from '@lib/components/ui/Button.svelte';
 	import Header from '@lib/components/ui/Header.svelte';
-
 	import Input from '@lib/components/ui/Input.svelte';
 	import { doc, DocumentReference, DocumentSnapshot, getDoc } from '@firebase/firestore';
 	import authStore from '@lib/authStore';
@@ -9,7 +8,8 @@
 	import debounce from 'lodash.debounce';
 	import { httpsCallable } from 'firebase/functions';
 	import Loader from '@components/ui/Loader.svelte';
-	import { fade, fly, slide } from 'svelte/transition';
+	import { slide } from 'svelte/transition';
+
 	let username: string; // something to bind
 	let isValid: boolean = false;
 	let isAvaiable = false; // Boolean to trigger reading the username
