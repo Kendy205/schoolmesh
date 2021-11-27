@@ -1,16 +1,16 @@
 import {
   initializeApp
-} from "@firebase/app";
+} from "firebase/app";
 import {
   getFirestore
-} from "@firebase/firestore"
+} from "firebase/firestore"
 import {
   getAuth,
   GoogleAuthProvider,
   FacebookAuthProvider,
   GithubAuthProvider
-} from "@firebase/auth"
-import { getFunctions } from "@firebase/functions"
+} from "firebase/auth"
+import { getFunctions } from "firebase/functions"
 
 const firebaseConfig = {
   apiKey: "AIzaSyAfM40T5V1tZ33zgLzY4M229ZLv3W7j1Rg",

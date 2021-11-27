@@ -1,8 +1,7 @@
 <script lang="ts">
 	import Button from '@lib/components/ui/Button.svelte';
-	import Header from '@lib/components/ui/Header.svelte';
 	import Input from '@lib/components/ui/Input.svelte';
-	import { doc, DocumentReference, DocumentSnapshot, getDoc } from '@firebase/firestore';
+	import { doc, DocumentReference, DocumentSnapshot, getDoc } from 'firebase/firestore';
 	import authStore from '@lib/authStore';
 	import { functions, db } from '@lib/firebase';
 	import debounce from 'lodash.debounce';

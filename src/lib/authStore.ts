@@ -1,4 +1,4 @@
-import type { UserInfo } from "@firebase/auth";
+import type { UserInfo } from "firebase/auth";
 import { writable } from "svelte/store";
 
 
