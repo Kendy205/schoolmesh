@@ -13,7 +13,7 @@
 <button
 	on:click
 	class="w-{width}  rounded-md flex items-center justify-left p-2 py-3 pr-3 text-{text_color} 
-  duration-100 cursor-pointer mb-4 focus:ring-4 focus:ring-{color}-{colorValue - 100}
+  duration-100 cursor-pointer mb-4
   hover:bg-{bg_color} hover:text-white border-2
   border-{bg_color}"
 	{disabled}

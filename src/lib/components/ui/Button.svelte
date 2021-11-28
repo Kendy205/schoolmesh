@@ -13,7 +13,7 @@
 <button
 	on:click
 	class="w-{width} rounded-md flex items-center justify-left p-2 py-3 pr-3 text-{text_color} 
-  duration-300 cursor-pointer mb-4 focus:ring-4 focus:ring-{color}-{colorValue - 100}
+  duration-300 cursor-pointer mb-4
   hover:bg-{color}-{`${colorValue + 100}`}
   {disabled ? 'bg-gray-400 cursor-not-allowed' : `bg-${bg_color}`}"
 	{disabled}
