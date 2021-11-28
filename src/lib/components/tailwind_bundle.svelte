@@ -47,3 +47,4 @@
 <div class="text-meshblue-700" />
 <div class="text-meshblue-800" />
 <div class="text-meshblue-900" />
+<div class="bg-instagram" />
