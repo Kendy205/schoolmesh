@@ -6,9 +6,9 @@
 </script>
 
 <div
-	class="w-72 rounded-md leading-8 flex {`bg-${bgColor}`} p-2 align-middle text-{textColor} duration-300 cursor-pointer mb-4"
+	class="w-72 rounded-md flex items-center {`bg-${bgColor}`} p-2 py-3 text-{textColor} duration-300 cursor-pointer mb-4"
 >
-	<img src={logo} class="h-8 mr-2" alt="" />
+	<img src={logo} class="h-6 mr-2" alt="" />
 	{text}
 </div>
 

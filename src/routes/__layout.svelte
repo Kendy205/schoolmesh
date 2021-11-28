@@ -10,12 +10,14 @@
 	import '../app.css';
 	import { register, init, getLocaleFromNavigator, isLoading } from 'svelte-i18n';
 	import Nav from '../lib/components/nav/Nav.svelte';
-	import { auth } from '../lib/firebase';
+	import { auth, db } from '../lib/firebase';
 	import { onAuthStateChanged } from 'firebase/auth';
 	import { onMount } from 'svelte';
 	import authStore from '../lib/authStore';
 	import Notifications from 'svelte-notifications';
 	import Toast from '../lib/components/ui/Toast.svelte';
+	import { doc, DocumentReference, DocumentSnapshot, getDoc } from '@firebase/firestore';
+	import privateData from '$lib/privateData';
 
 	// Lokalizace
 	register('en', () => import('../languages/en.json'));
@@ -33,6 +35,17 @@
 				isLoggedIn: user !== null,
 				user
 			});
+
+			const getPrivateData = async () => {
+				if (user !== null) {
+					const privateUserRef: DocumentReference = doc(db, 'users', user.uid, 'private', 'data');
+					const privateUserData: DocumentSnapshot = await getDoc(privateUserRef);
+					if (privateUserData.exists) {
+						privateData.set(privateUserData.data());
+					}
+				}
+			};
+			getPrivateData();
 		});
 	});
 </script>
