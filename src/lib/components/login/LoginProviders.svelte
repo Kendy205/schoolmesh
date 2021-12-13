@@ -1,7 +1,7 @@
 <script lang="ts">
 	// @ts-nocheck
 	import LoginProvider from './LoginProvider.svelte';
-	import { auth, db, googleAuth, facebookAuth, githubAuth } from '../../firebase';
+	import { auth, db, googleAuth, facebookAuth, microsoftAuth } from '../../firebase';
 	import { signInWithPopup } from 'firebase/auth';
 	import { getNotificationsContext } from 'svelte-notifications';
 	const { addNotification } = getNotificationsContext();
@@ -50,6 +50,18 @@
 	</span>
 	<span
 		on:click={() => {
+			signIn(microsoftAuth);
+		}}
+	>
+		<LoginProvider
+			text="Sign in with Microsoft"
+			bgColor="white"
+			logo="/social-sites/microsoft.svg"
+			textColor="black"
+		/>
+	</span>
+	<span
+		on:click={() => {
 			signIn(facebookAuth);
 		}}
 	>
@@ -57,18 +69,6 @@
 			text="Sign in with facebook"
 			bgColor="blue-500"
 			logo="/social-sites/facebook-logo-white.png"
-			textColor="white"
-		/>
-	</span>
-	<span
-		on:click={() => {
-			signIn(githubAuth);
-		}}
-	>
-		<LoginProvider
-			text="Sign in with Github"
-			bgColor="black"
-			logo="/social-sites/git-logo.png"
 			textColor="white"
 		/>
 	</span>

@@ -8,7 +8,8 @@ import {
   getAuth,
   GoogleAuthProvider,
   FacebookAuthProvider,
-  GithubAuthProvider
+  GithubAuthProvider,
+  OAuthProvider
 } from "@firebase/auth"
 import { getFunctions } from "@firebase/functions"
 
@@ -34,4 +35,4 @@ export const functions = getFunctions(app, "europe-west1")
 // Auth Providers
 export const googleAuth = new GoogleAuthProvider()
 export const facebookAuth = new FacebookAuthProvider()
-export const githubAuth = new GithubAuthProvider()
+export const microsoftAuth = new OAuthProvider("microsoft.com")

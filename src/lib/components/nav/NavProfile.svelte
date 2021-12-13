@@ -27,12 +27,24 @@
 			</div>
 		{:else}
 			<a href="/settings#username">
-				<section
-					class="rounded-md hover:bg-meshblue-800 bg-meshblue-700 flex items-center p-2 font-semibold cursor-pointer"
+				<div
+					class="rounded-md hover:bg-meshblue-800 bg-meshblue-700 flex items-center p-2 font-semibold cursor-pointer w-f"
 				>
-					<div class="material-icons mr-2">Create username</div>
-					Log in
-				</section>
+					<section class="flex items-center">
+						<div class="material-icons mr-2">account_circle</div>
+						Create Username
+					</section>
+					<div class="flex-grow" />
+					<span
+						on:click={() => {
+							signOut(auth);
+						}}
+					>
+						<div class="material-icons cursor-pointer p-1 hover:rounded-xl duration-200">
+							logout
+						</div>
+					</span>
+				</div>
 			</a>
 		{/if}
 	{:else}

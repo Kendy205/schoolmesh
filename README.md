@@ -8,5 +8,8 @@
 7. lodash.debounce
 8. svelte-loading-spinner
 
+# Add to the footer
+the microsoft copyright
+
 # Potential security concerns
 `components/ui/toast.svelte` uses @html to render html in the notifications, could result in xss
