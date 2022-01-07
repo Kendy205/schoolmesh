@@ -18,7 +18,7 @@
 	import Toast from '../lib/components/ui/Toast.svelte';
 	import { doc, DocumentReference, DocumentSnapshot, getDoc } from '@firebase/firestore';
 	import privateData from '$lib/privateData';
-
+	import { slide, fade } from 'svelte/transition';
 	// Lokalizace
 	register('en', () => import('../languages/en.json'));
 	register('en-US', () => import('../languages/en-US.json'));
