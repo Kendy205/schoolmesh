@@ -1,12 +1,17 @@
 <script>
 	export let value;
 	export let placeholder;
+	export let id;
 </script>
 
-<input class="input-button" type="text" {placeholder} bind:value />
-
-<style>
-	.input-button {
-		@apply w-72 flex-auto p-3 text-black rounded-md border-2 border-mesh-300 focus:border-meshblue-500 outline-none my-2 align-middle;
-	}
-</style>
+<label for={id} class="font-bold text-gray-700">
+	{placeholder}
+</label>
+<br />
+<input
+	name={id}
+	class="w-72 flex-auto px-3 py-2 text-black rounded-md border-2 border-mesh-100
+  focus:border-meshblue-500 focus:ring focus:ring-meshblue-300 outline-none my-2 align-middle"
+	type="text"
+	bind:value
+/>

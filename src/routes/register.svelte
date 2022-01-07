@@ -1,16 +1,14 @@
 <script lang="ts">
 	//@ts-nocheck
 	import Header from '../lib/components/ui/Header.svelte';
-	import LoginProviders from '../lib/components/login/LoginProviders.svelte';
-	import Register from '../lib/components/login/Register.svelte';
 	import Button from '../lib/components/ui/Button.svelte';
+	import RegisterForm from '$lib/components/login/RegisterForm.svelte';
 </script>
 
 <section>
-	<Header>Register</Header>
+	<Header>Create your account</Header>
 
 	<div class="grid grid-cols-2 gap-24">
-		<Register />
-		<LoginProviders />
+		<RegisterForm />
 	</div>
 </section>

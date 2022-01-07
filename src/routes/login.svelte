@@ -39,11 +39,7 @@
 				<li><input class="input-button" type="password" placeholder="Password" /></li>
 			</ul>
 			<Button bg-color="meshblue-500" icon="search" text-color="white">Sign In</Button>
-
-			<a class="text-gray-500 link" href="/register">Don't have an account? Create one here!</a>
 		</div>
-		<!-- Login Providers -->
-		<LoginProviders />
 	</div>
 </section>
 
