@@ -1,7 +1,6 @@
 <script lang="ts">
 	// @ts-nocheck
 	import Header from '../lib/components/ui/Header.svelte';
-	import LoginProviders from '../lib/components/login/LoginProviders.svelte';
 	import Button from '../lib/components/ui/Button.svelte';
 	import { auth, db, googleAuth, facebookAuth, githubAuth } from '../lib/firebase';
 	import { signInWithPopup } from 'firebase/auth';

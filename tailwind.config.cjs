@@ -41,7 +41,10 @@ const config = {
     }
   },
 
-  plugins: [require("@tailwindcss/forms")]
+  plugins: [require("@tailwindcss/forms")],
+  safelist:[
+    "border-red-5OO", "border-gray-600"
+  ]
 };
 
 module.exports = config;
