@@ -26,8 +26,8 @@
 	/>
 	<label
 		for={id}
-		class="absolute left-0 -top-6 text-sm text-gray-600 transition-all duration-300 pointer-events-none
-     peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-6 peer-focus:text-gray-600 peer-focus:text-sm peer-focus:left-0 peer-placeholder-shown:left-3
+		class="absolute left-3 -top-2.5 px-1 bg-white text-sm text-gray-600 transition-all duration-300 pointer-events-none
+     peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-gray-600 peer-focus:text-sm peer-focus:left-3 peer-placeholder-shown:left-3
   ">{placeholder}</label
 	>
 </div>
