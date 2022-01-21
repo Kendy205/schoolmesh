@@ -13,7 +13,7 @@
 	});
 </script>
 
-<div class="relative my-2 mx-2">
+<div class="relative my-3 mx-3">
 	<input
 		type="text"
 		bind:value
