@@ -8,9 +8,17 @@
 	export let type = 'text';
 	export let note = ' ';
 	let input;
+	let mounted;
 	onMount(() => {
 		input.type = type;
+		mounted = true;
 	});
+
+	$: {
+		if (mounted) {
+			input.type = type;
+		}
+	}
 </script>
 
 <div class="relative my-3 mx-3">
@@ -25,6 +33,7 @@
 			? 'red-400'
 			: 'gray-600'} focus:border-meshblue-500 focus:outline-none focus:ring-0 peer placeholder-transparent"
 	/>
+
 	<label
 		for={id}
 		class="absolute left-0 -top-2.5 bg-white text-sm text-gray-600 transition-all duration-300 pointer-events-none
