@@ -3,6 +3,7 @@
 	import LoadingButton from '$lib/components/ui/LoadingButton.svelte';
 	import { signInWithEmailAndPassword } from 'firebase/auth';
 	import { auth } from '$lib/firebase';
+	import Background from '$lib/components/login/Background.svelte';
 	// Variables to bind to
 	let email;
 	let emailStatus = {
@@ -30,7 +31,7 @@
 </script>
 
 <section class="lg:flex w-screen h-screen">
-	<section class="lg:w-1/2 h-screen pl-6 pt-6" style="background-image: url(/background.png);">
+	<Background>
 		<h1 class="text-white mb-4 overflow-hidden max-w-max">
 			Login to <br />
 			School Mesh
@@ -40,7 +41,7 @@
 				Dont have an account? Create one here!
 			</h4>
 		</a>
-	</section>
+	</Background>
 
 	<section class="grid place-items-center lg:w-1/2 w-full">
 		<div class="rounded-md shadow-md p-6 bg-white relative">
