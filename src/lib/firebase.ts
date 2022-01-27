@@ -37,7 +37,7 @@ export const googleAuth = new GoogleAuthProvider()
 export const facebookAuth = new FacebookAuthProvider()
 export const microsoftAuth = new OAuthProvider("microsoft.com")
 
-export const storeUserData = async (db, user, username) => {
+export const storeUserData = async (db, user, username, displayName) => {
   console.log({user,username})
 
   const batch = writeBatch(db)
@@ -47,7 +47,7 @@ export const storeUserData = async (db, user, username) => {
   })
 
   batch.set(doc(db, "users", user.uid), {
-    displayName: user.displayName,
+    displayName: displayName,
     photoURL: "/profile_picture",
     username: username,
     uid: user.uid

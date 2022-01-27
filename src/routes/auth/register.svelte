@@ -63,7 +63,7 @@
 				updateProfile(user.user, {
 					displayName: firstName + lastName
 				});
-				storeUserData(db, user.user, username);
+				storeUserData(db, user.user, username, firstName + ' ' + lastName);
 			})
 			.catch((e) => {
 				console.log(e);
@@ -155,9 +155,7 @@
 			<Checkbox />
 
 			<div class="mx-3">
-				<LoadingButton icon="login" {loading} on:click={registerAccount}
-					>Register account</LoadingButton
-				>
+				<LoadingButton icon="login" {loading}>Register account</LoadingButton>
 			</div>
 		</form>
 	</section>
