@@ -1,10 +1,10 @@
 <script>
 	import Input from '$lib/components/ui/Input.svelte';
 	import LoadingButton from '$lib/components/ui/LoadingButton.svelte';
-	import { signInWithEmailAndPassword } from 'firebase/auth';
-	import { auth } from '$lib/firebase';
+	import { auth, db, storeUserData } from '$lib/firebase';
 	import Background from '$lib/components/login/Background.svelte';
 	import Checkbox from '$lib/components/ui/CheckBox.svelte';
+	import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 	// Variables to bind to
 	let firstName;
 	let lastName;
@@ -54,7 +54,21 @@
 		}
 	};
 
-	const registerAccount = () => {};
+	const registerAccount = () => {
+		console.log(email, password);
+		createUserWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+				const user = userCredential;
+				console.log(user);
+				updateProfile(user.user, {
+					displayName: firstName + lastName
+				});
+				storeUserData(db, user.user, username);
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	};
 </script>
 
 <section class="lg:flex w-screen h-screen">

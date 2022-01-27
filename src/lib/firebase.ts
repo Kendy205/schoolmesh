@@ -2,7 +2,7 @@ import {
   initializeApp
 } from "@firebase/app";
 import {
-  getFirestore
+  getFirestore, doc, writeBatch
 } from "@firebase/firestore"
 import {
   getAuth,
@@ -36,3 +36,29 @@ export const functions = getFunctions(app, "europe-west1")
 export const googleAuth = new GoogleAuthProvider()
 export const facebookAuth = new FacebookAuthProvider()
 export const microsoftAuth = new OAuthProvider("microsoft.com")
+
+export const storeUserData = async (db, user, username) => {
+  console.log({user,username})
+
+  const batch = writeBatch(db)
+
+  batch.set(doc(db,"usernames", username),{
+    uid : user.uid
+  })
+
+  batch.set(doc(db, "users", user.uid), {
+    displayName: user.displayName,
+    photoURL: "/profile_picture",
+    username: username,
+    uid: user.uid
+  })
+
+  batch.set(doc(db, "users", user.uid, "private", "data"), {
+    email: user.email,
+    username: username,
+    uid: user.uid
+  })
+
+  await batch.commit()
+
+}
