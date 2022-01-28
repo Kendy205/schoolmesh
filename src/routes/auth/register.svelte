@@ -1,10 +1,14 @@
 <script>
+	import { getNotificationsContext } from 'svelte-notifications';
 	import Input from '$lib/components/ui/Input.svelte';
 	import LoadingButton from '$lib/components/ui/LoadingButton.svelte';
 	import { auth, db, storeUserData } from '$lib/firebase';
 	import Background from '$lib/components/login/Background.svelte';
 	import Checkbox from '$lib/components/ui/CheckBox.svelte';
 	import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+	import debounce from 'lodash.debounce';
+	import { collection, doc, getDoc } from 'firebase/firestore';
+	import { goto } from '$app/navigation';
 	// Variables to bind to
 	let firstName;
 	let lastName;
@@ -33,6 +37,7 @@
 
 	let loading = false;
 	let showPassword = false;
+	// showing password
 	$: {
 		if (showPassword) {
 			passwordElement = 'text';
@@ -43,6 +48,95 @@
 		}
 	}
 
+	// pyramid of if hell
+	$: {
+		if (password !== undefined) {
+			passwordValidation();
+		}
+		if (repeatPassword !== undefined) {
+			repeatPasswordValidation();
+		}
+
+		if (username !== undefined) {
+			usernameValidation();
+		}
+
+		if (email !== undefined) {
+			emailValidation();
+		}
+	}
+
+	let passwordValidation = debounce(() => {
+		if (password.length < 10) {
+			passwordStatus = {
+				error: true,
+				note: 'Password must be longer than 10 characters'
+			};
+		} else {
+			passwordStatus = {
+				error: false,
+				note: ''
+			};
+		}
+	}, 500);
+
+	let repeatPasswordValidation = debounce(async () => {
+		if (repeatPassword !== password) {
+			repeatPasswordStatus = {
+				error: true,
+				note: "The passwords don't match'"
+			};
+		} else {
+			repeatPasswordStatus = {
+				error: false,
+				note: ''
+			};
+		}
+	}, 500);
+
+	let usernameValidation = debounce(async () => {
+		if (username.length >= 5 && username.length <= 15) {
+			const usernameRef = doc(db, 'usernames', username);
+			const usernameSnapshot = await getDoc(usernameRef);
+			console.log('Searching for the username');
+
+			if (usernameSnapshot.exists()) {
+				console.log(usernameSnapshot.exists());
+				usernameStatus = {
+					note: 'This username is already taken',
+					error: true
+				};
+			} else {
+				console.log('doesnt exist');
+				usernameStatus = {
+					note: '',
+					error: false
+				};
+			}
+		} else {
+			usernameStatus = {
+				note: 'Invalid username',
+				error: true
+			};
+		}
+	}, 500);
+
+	let emailValidation = debounce(() => {
+		const re =
+			/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+		if (email.match(re)) {
+			emailStatus = {
+				error: false,
+				note: ''
+			};
+		} else {
+			emailStatus = {
+				error: true,
+				note: 'Invalid Email'
+			};
+		}
+	}, 500);
+
 	let parseError = (e) => {
 		switch (e) {
 			case 'auth/invalid-email':
@@ -51,22 +145,40 @@
 					note: 'Invalid email'
 				};
 				break;
+			case 'auth/email-already-in-use':
+				emailStatus = {
+					error: true,
+					note: 'Email already in use'
+				};
+				break;
+			default:
+				const { addNotification } = getNotificationsContext();
+				addNotification({
+					text: `ERROR_CODE:${e}`,
+					position: 'top-right',
+					heading: 'Something went wrong',
+					type: 'error',
+					removeAfter: 4000
+				});
 		}
 	};
 
-	const registerAccount = () => {
+	const registerAccount = async () => {
 		console.log(email, password);
 		createUserWithEmailAndPassword(auth, email, password)
-			.then((userCredential) => {
+			.then(async (userCredential) => {
 				const user = userCredential;
 				console.log(user);
 				updateProfile(user.user, {
-					displayName: firstName + lastName
+					displayName: firstName + ' ' + lastName,
+					photoURL: `https://avatars.dicebear.com/api/bottts/${username}.svg`
+				}).then(() => {
+					goto('/');
 				});
 				storeUserData(db, user.user, username, firstName + ' ' + lastName);
 			})
 			.catch((e) => {
-				console.log(e);
+				parseError(e);
 			});
 	};
 </script>

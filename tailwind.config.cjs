@@ -42,7 +42,7 @@ const config = {
 
   plugins: [require("@tailwindcss/forms")],
   safelist:[
-    "border-red-5OO", "border-gray-600"
+    "border-red-5OO", "border-gray-600", "text-red-500", "border-b-red-500", "focus:border-meshblue-600", "focus:border-red-500"
   ]
 };
 

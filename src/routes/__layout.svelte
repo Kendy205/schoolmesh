@@ -38,7 +38,7 @@
 
 			const getPrivateData = async () => {
 				if (user !== null) {
-					const privateUserRef: DocumentReference = doc(db, 'users', user.uid, 'private', 'data');
+					const privateUserRef: DocumentReference = doc(db, 'users', user.uid);
 					const privateUserData: DocumentSnapshot = await getDoc(privateUserRef);
 					if (privateUserData.exists) {
 						privateData.set(privateUserData.data());

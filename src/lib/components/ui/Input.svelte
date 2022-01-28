@@ -4,9 +4,9 @@
 	export let value;
 	export let placeholder;
 	export let id;
-	export let error;
+	export let error = false;
 	export let type = 'text';
-	export let note = ' ';
+	export let note = '';
 	let input;
 	let mounted;
 	onMount(() => {
@@ -28,10 +28,13 @@
 		bind:this={input}
 		placeholder="something"
 		{id}
+		required
 		name="id"
 		class="w-full h-10 border-b-2 border-0 p-0 border-b-{error
-			? 'red-400'
-			: 'gray-600'} focus:border-meshblue-500 focus:outline-none focus:ring-0 peer placeholder-transparent"
+			? 'red-500'
+			: 'gray-600'} focus:border-{error
+			? 'red-500'
+			: 'meshblue-600'} focus:outline-none focus:ring-0 peer placeholder-transparent"
 	/>
 
 	<label
@@ -40,7 +43,14 @@
      peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-gray-600 peer-focus:text-sm
   ">{placeholder}</label
 	>
-	<div class="text-gray-600">
-		{note}
-	</div>
+	{#if error}
+		<div
+			class="absolute top-2.5 right-0 text-{error ? 'red-500' : 'gray-600'} text-s  max-w-full"
+			data-bs-toggle="tooltip"
+			data-bs-placement="top"
+			title={note}
+		>
+			<div class="material-icons">info</div>
+		</div>
+	{/if}
 </div>

@@ -2,7 +2,7 @@ import {
   initializeApp
 } from "@firebase/app";
 import {
-  getFirestore, doc, writeBatch
+  getFirestore, doc, writeBatch, Firestore
 } from "@firebase/firestore"
 import {
   getAuth,
@@ -53,12 +53,6 @@ export const storeUserData = async (db, user, username, displayName) => {
     uid: user.uid
   })
 
-  batch.set(doc(db, "users", user.uid, "private", "data"), {
-    email: user.email,
-    username: username,
-    uid: user.uid
-  })
-
   await batch.commit()
-
+  return
 }
