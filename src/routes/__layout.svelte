@@ -18,7 +18,7 @@
 	import Toast from '../lib/components/ui/Toast.svelte';
 	import { doc, DocumentReference, DocumentSnapshot, getDoc } from '@firebase/firestore';
 	import privateData from '$lib/privateData';
-
+	import { slide, fade } from 'svelte/transition';
 	// Lokalizace
 	register('en', () => import('../languages/en.json'));
 	register('en-US', () => import('../languages/en-US.json'));
@@ -38,7 +38,7 @@
 
 			const getPrivateData = async () => {
 				if (user !== null) {
-					const privateUserRef: DocumentReference = doc(db, 'users', user.uid, 'private', 'data');
+					const privateUserRef: DocumentReference = doc(db, 'users', user.uid);
 					const privateUserData: DocumentSnapshot = await getDoc(privateUserRef);
 					if (privateUserData.exists) {
 						privateData.set(privateUserData.data());

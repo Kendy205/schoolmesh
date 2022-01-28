@@ -1,6 +1,5 @@
 const config = {
-  mode: 'jit',
-  purge: ['./src/**/*.{html,js,svelte,ts}'],
+  content: ['./src/**/*.{html,js,svelte,ts}'],
 
   theme: {
     extend: {
@@ -41,7 +40,10 @@ const config = {
     }
   },
 
-  plugins: []
+  plugins: [require("@tailwindcss/forms")],
+  safelist:[
+    "border-red-5OO", "border-gray-600", "text-red-500", "border-b-red-500", "focus:border-meshblue-600", "focus:border-red-500"
+  ]
 };
 
 module.exports = config;

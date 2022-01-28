@@ -48,3 +48,5 @@
 <div class="text-meshblue-800" />
 <div class="text-meshblue-900" />
 <div class="bg-instagram" />
+<div class="border-red-400" />
+<div class="border-gray-600" />
