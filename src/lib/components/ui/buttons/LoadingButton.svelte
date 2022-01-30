@@ -29,11 +29,11 @@
 		<div class="absolute">
 			<div class="flex items-center">
 				{#if !loading}
-					<div class="material-icons" out:slide={{ duration: 200 }}>
+					<div class="material-icons" out:slide|local={{ duration: 200 }}>
 						{icon}
 					</div>
 				{:else}
-					<div transition:slide={{ delay: 200, duration: 200 }}>
+					<div transition:slide|local={{ delay: 200, duration: 200 }}>
 						<Circle unit="rem" size="1" color="white" />
 					</div>
 				{/if}

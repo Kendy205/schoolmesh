@@ -7,26 +7,17 @@
 
 <script lang="ts">
 	// @ts-nocheck
-	import '../app.css';
-	import { register, init, getLocaleFromNavigator, isLoading } from 'svelte-i18n';
-	import Nav from '../lib/components/nav/Nav.svelte';
-	import { auth, db } from '../lib/firebase';
+	import '../../app.css';
+	import Nav from '$lib/components/nav/Nav.svelte';
+	import { isLoading } from 'svelte-i18n';
+	import { auth, db } from '$lib/firebase';
 	import { onAuthStateChanged } from 'firebase/auth';
 	import { onMount } from 'svelte';
-	import authStore from '../lib/authStore';
+	import authStore from '$lib/authStore';
 	import Notifications from 'svelte-notifications';
-	import Toast from '../lib/components/ui/Toast.svelte';
+	import Toast from '$lib/components/ui/Toast.svelte';
 	import { doc, DocumentReference, DocumentSnapshot, getDoc } from '@firebase/firestore';
-	import privateData from '$lib/privateData';
-	import { slide, fade } from 'svelte/transition';
-	// Lokalizace
-	register('en', () => import('../languages/en.json'));
-	register('en-US', () => import('../languages/en-US.json'));
-	// Initialize localization
-	init({
-		initialLocale: getLocaleFromNavigator(),
-		fallbackLocale: 'en'
-	});
+	import userData from '$lib/userData';
 
 	//Listens for authStatechanges and updates the authStore accordingly
 	onMount(() => {
@@ -36,16 +27,16 @@
 				user
 			});
 
-			const getPrivateData = async () => {
+			const getUserData = async () => {
 				if (user !== null) {
-					const privateUserRef: DocumentReference = doc(db, 'users', user.uid);
-					const privateUserData: DocumentSnapshot = await getDoc(privateUserRef);
-					if (privateUserData.exists) {
-						privateData.set(privateUserData.data());
+					const userRef: DocumentReference = doc(db, 'users', user.uid);
+					const userDataSnap: DocumentSnapshot = await getDoc(userRef);
+					if (userDataSnap.exists) {
+						userData.set(userDataSnap.data());
 					}
 				}
 			};
-			getPrivateData();
+			getUserData();
 		});
 	});
 </script>

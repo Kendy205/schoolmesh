@@ -19,8 +19,8 @@
 	class="p-4 rounded-md m-2 text-white duration-300 {notification.type === 'error'
 		? 'bg-red-500'
 		: 'bg-meshblue-500'} hover:-translate-y-0.5"
-	in:fade
-	out:fade
+	in:fade|local
+	out:fade|local
 >
 	<div class="flex h-full">
 		<span>
