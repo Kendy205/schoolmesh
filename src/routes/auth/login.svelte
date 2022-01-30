@@ -1,9 +1,10 @@
 <script>
-	import Input from '$lib/components/ui/Input.svelte';
-	import LoadingButton from '$lib/components/ui/LoadingButton.svelte';
+	import Input from '$lib/components/login/Input.svelte';
+	import LoadingButton from '$lib/components/ui/buttons/LoadingButton.svelte';
 	import { signInWithEmailAndPassword } from 'firebase/auth';
 	import { auth } from '$lib/firebase';
 	import Background from '$lib/components/login/Background.svelte';
+	import { goto } from '$app/navigation';
 	// Variables to bind to
 	let email;
 	let emailStatus = {
@@ -72,6 +73,7 @@
 						signInWithEmailAndPassword(auth, email, password)
 							.then((userCredential) => {
 								const user = userCredential.user;
+								goto('/app');
 							})
 							.catch((error) => {
 								parseError(error);

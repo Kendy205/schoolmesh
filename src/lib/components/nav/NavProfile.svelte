@@ -2,13 +2,13 @@
 	import authStore from '$lib/authStore';
 	import { auth } from '$lib/firebase';
 	import { signOut, useDeviceLanguage } from 'firebase/auth';
-	import privateData from '$lib/privateData';
+	import userData from '$lib/userData';
 </script>
 
 <section class="p-2">
-	{#if $authStore.isLoggedIn && $privateData !== undefined}
+	{#if $authStore.isLoggedIn && $userData !== undefined}
 		<div class="flex items-center bg-meshblue-700 p-2 rounded-md">
-			<a class="flex items-center" href="user/{$privateData.username}">
+			<a class="flex items-center" href="user/{$userData.username}">
 				<img
 					src={$authStore.user.photoURL}
 					alt=""
@@ -16,7 +16,7 @@
 				/>
 				<div class=" leading-tight">
 					<div class="font-semibold">{$authStore.user.displayName}</div>
-					<div class="font-xs">{$privateData.username}</div>
+					<div class="font-xs">@{$userData.username}</div>
 				</div>
 			</a>
 			<div class="flex-grow" />

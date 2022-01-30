@@ -1,10 +1,10 @@
 <script>
 	import { getNotificationsContext } from 'svelte-notifications';
-	import Input from '$lib/components/ui/Input.svelte';
-	import LoadingButton from '$lib/components/ui/LoadingButton.svelte';
+	import Input from '$lib/components/login/Input.svelte';
+	import LoadingButton from '$lib/components/ui/buttons/LoadingButton.svelte';
 	import { auth, db, storeUserData } from '$lib/firebase';
 	import Background from '$lib/components/login/Background.svelte';
-	import Checkbox from '$lib/components/ui/CheckBox.svelte';
+	import Checkbox from '$lib/components/login/CheckBox.svelte';
 	import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 	import debounce from 'lodash.debounce';
 	import { collection, doc, getDoc } from 'firebase/firestore';
@@ -186,6 +186,11 @@
 <section class="lg:flex w-screen h-screen">
 	<Background>
 		<h1 class="text-white">Register your mesh account!</h1>
+		<a href="/auth/login">
+			<h4 class="text-meshblue-300 hover:border-b-2 border-meshblue-300 max-w-max">
+				Already a user? Sign in here!
+			</h4>
+		</a>
 	</Background>
 
 	<section class="grid place-items-center lg:w-1/2 w-full">
